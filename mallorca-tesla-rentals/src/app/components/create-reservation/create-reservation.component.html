@@ -1,0 +1,69 @@
+<h1>Create Reservation</h1>
+
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" formControlName="startDate" class="form-control" required>
+    <div *ngIf="reservationForm.get('startDate')?.errors?.['startDateInvalid']">
+      Start date must be later than today.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" formControlName="endDate" class="form-control" required>
+    <div *ngIf="reservationForm.get('endDate')?.errors?.['endDateInvalid']">
+      End date must be later than start date.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="pickupLocation">Pickup Location:</label>
+    <select id="pickupLocation" formControlName="pickupLocation" class="form-control" required>
+      <option value="" disabled selected>Select Pickup Location</option>
+      <option *ngFor="let location of locations" [ngValue]="location">{{ location.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="returnLocation">Return Location:</label>
+    <select id="returnLocation" formControlName="returnLocation" class="form-control" required>
+      <option value="" disabled selected>Select Return Location</option>
+      <option *ngFor="let location of locations" [ngValue]="location">{{ location.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" formControlName="lastName" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="personalIdentificationNumber">Personal Identification Number:</label>
+    <input type="text" id="personalIdentificationNumber" formControlName="personalIdentificationNumber" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" required>
+  </div>
+  
+
+  <div class="form-group">
+    <label for="car">Car Model:</label>
+    <select id="car" formControlName="car" class="form-control" required>
+      <option value="" disabled selected>Select Car Model</option>
+      <option *ngFor="let car of cars" [ngValue]="car">{{ car.modelName }}</option>
+    </select>
+  </div>
+  <div class="TotalCost">Total Cost: {{totalCost}}</div>
+  <div *ngIf="reservationForm.errors?.['dateRangeInvalid']">
+    Start date must be earlier than end date.
+  </div>
+  <button type="submit" class="btn btn-primary">Create Reservation</button>
+</form>

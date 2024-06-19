@@ -1,0 +1,15 @@
+<h1>Tesla Reservation </h1>
+
+<ul>
+  <li *ngFor="let reservation of reservations">
+    <strong>Reservation ID:</strong> {{ reservation.id }} <br>
+    <strong>Start Date:</strong> {{ reservation.startDate | date:'yyyy-MM-dd' }} <br>
+    <strong>End Date:</strong> {{ reservation.endDate | date:'yyyy-MM-dd' }} <br>
+    <strong>Pickup Location:</strong> {{ reservation.pickupLocation.name }}, {{ reservation.pickupLocation.buildingNumber }} <br>
+    <strong>Return Location:</strong> {{ reservation.returnLocation.name }}, {{ reservation.returnLocation.buildingNumber }} <br>
+    <strong>Client:</strong> {{ reservation.client.name }} {{ reservation.client.lastName }} <br>
+    <strong>Car:</strong> {{ reservation.car.modelName }} <br>
+    <strong>Total Cost</strong> {{reservation.totalCost}}
+     <hr>
+  </li>
+</ul>
